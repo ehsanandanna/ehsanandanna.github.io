@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3eee4">
+  <meta name="description" content="Exhibitions by Ehsan & Anna — sharing art, stories, and supporting artists.">
+  <title>Exhibitions by Ehsan & Anna</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f3eee4;
+      --paper-deep: #e9dfd0;
+      --ink: #29261f;
+      --muted: #756b5e;
+      --accent: #a64b36;
+      --line: #d7cbbb;
+      --white: #fffaf2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 90% 8%, rgba(166, 75, 54, .08), transparent 30%),
+        var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    .site-header {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 1.25rem clamp(1.2rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .wordmark {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: .25rem;
+      padding: .25rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, .55);
+    }
+
+    .language-switcher button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: .45rem .7rem;
+      font: inherit;
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .language-switcher button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .hero {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: clamp(4rem, 10vw, 8.5rem) clamp(1.2rem, 8vw, 7rem) clamp(4.5rem, 10vw, 8rem);
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(3.6rem, 10vw, 8.5rem);
+    }
+
+    h1 .ampersand { color: var(--accent); }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 2rem 0 0;
+      color: #554e44;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .hero-note::before {
+      content: "";
+      width: 2.5rem;
+      border-top: 1px dashed var(--accent);
+    }
+
+    .exhibitions {
+      background: var(--paper-deep);
+      border-top: 1px dashed var(--accent);
+      border-bottom: 1px dashed var(--accent);
+      padding: clamp(3.5rem, 8vw, 7rem) clamp(1.2rem, 5vw, 4rem);
+    }
+
+    .section-inner {
+      width: min(1000px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      margin: 0 0 2.5rem;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+    }
+
+    .exhibition-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      background: var(--white);
+      border: 1px solid rgba(41, 38, 31, .1);
+      box-shadow: 0 20px 60px rgba(41, 38, 31, .06);
+    }
+
+    .art-panel {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background:
+        radial-gradient(ellipse at 25% 25%, rgba(243, 238, 228, .92), transparent 30%),
+        radial-gradient(ellipse at 75% 35%, rgba(166, 75, 54, .55), transparent 28%),
+        radial-gradient(ellipse at 45% 78%, rgba(41, 38, 31, .88), transparent 38%),
+        linear-gradient(135deg, #d6b99b, #a64b36 58%, #6b342b);
+    }
+
+    /* Decorative thread-like lines; no external artwork is required. */
+    .art-panel::before,
+    .art-panel::after {
+      content: "";
+      position: absolute;
+      inset: 9%;
+      border: 1px dashed rgba(255, 250, 242, .68);
+      border-radius: 48% 52% 43% 57% / 52% 40% 60% 48%;
+      transform: rotate(-18deg);
+      pointer-events: none;
+    }
+
+    .art-panel::after {
+      inset: 18% 13% 13% 20%;
+      border-style: solid;
+      opacity: .65;
+      transform: rotate(22deg);
+    }
+
+    .art-panel-label {
+      position: relative;
+      z-index: 1;
+      max-width: 300px;
+      color: #fffaf2;
+      font-size: .75rem;
+      letter-spacing: .14em;
+      line-height: 1.7;
+      text-transform: uppercase;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: clamp(1.7rem, 4vw, 3.5rem);
+    }
+
+    .card-content h3 {
+      margin: .2rem 0 1.2rem;
+      font-size: clamp(2.6rem, 5vw, 4.3rem);
+    }
+
+    .card-content p {
+      margin: 0 0 1rem;
+      color: #554e44;
+    }
+
+    .artist-note {
+      margin-top: .25rem !important;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-size: .9rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      margin-top: auto;
+      padding: .85rem 1.15rem;
+      background: var(--accent);
+      color: white;
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .button:hover {
+      background: transparent;
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 2rem clamp(1.2rem, 5vw, 4rem);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    [dir="rtl"] body,
+    body[dir="rtl"] {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    body[dir="rtl"] .site-header,
+    body[dir="rtl"] .footer {
+      direction: rtl;
+    }
+
+    body[dir="rtl"] .hero {
+      text-align: right;
+    }
+
+    body[dir="rtl"] .hero-note {
+      flex-direction: row-reverse;
+    }
+
+    body[dir="rtl"] .eyebrow {
+      letter-spacing: 0;
+    }
+
+    body[dir="rtl"] .card-content {
+      text-align: right;
+      align-items: flex-start;
+    }
+
+    body[dir="rtl"] .art-panel-label {
+      text-align: right;
+    }
+
+    body[dir="rtl"] .button {
+      align-self: flex-start;
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .8rem;
+      }
+
+      .hero { padding-top: 4.5rem; }
+
+      .exhibition-card { grid-template-columns: 1fr; }
+
+      .art-panel { min-height: 260px; }
+
+      .card-content { min-height: 340px; }
+
+      .footer {
+        flex-direction: column;
+        gap: .25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wordmark" data-i18n="wordmark">A small independent exhibition project</div>
+    <nav class="language-switcher" aria-label="Choose language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-lang="fa" aria-pressed="false">فا</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow" data-i18n="heroEyebrow">ARTISTS · STORIES · CONNECTION</p>
+      <h1 data-i18n="heroTitle">Exhibitions by<br>Ehsan <span class="ampersand">&</span> Anna</h1>
+      <p class="hero-copy" data-i18n="intro">
+        Hi, we are Ehsan and Anna. We are two people passionate about artists.
+        We host intimate exhibitions to share the work of artists we admire
+        and collect donations to support them.
+      </p>
+      <div class="hero-note" data-i18n="heroNote">Art brings us closer to each other.</div>
+    </section>
+
+    <section class="exhibitions">
+      <div class="section-inner">
+        <p class="eyebrow" data-i18n="featuredEyebrow">CURRENTLY FEATURED</p>
+        <h2 class="section-heading" data-i18n="sectionTitle">An exhibition to discover</h2>
+
+        <article class="exhibition-card">
+          <div class="art-panel" role="img" data-i18n-aria="artAlt" aria-label="Abstract artwork-inspired shapes and thread-like lines">
+            <div class="art-panel-label" data-i18n="artLabel">Art · Personal stories · Iran</div>
+          </div>
+
+          <div class="card-content">
+            <p class="eyebrow" data-i18n="cardEyebrow">FEATURED EXHIBITION</p>
+            <h3 data-i18n="exhibitionTitle">Erzählungen<br>der Hände</h3>
+            <p data-i18n="exhibitionDescription">
+              Artists from Iran share their lived realities through art.
+              Their works offer personal stories and glimpses into life in Iran,
+              told through the things their hands create.
+            </p>
+            <p class="artist-note" data-i18n="artistNote">
+              Discover the artists, explore their work, and support them through donations.
+            </p>
+            <a class="button" href="EXHIBITION-PAGE-URL" data-i18n="registerLink">
+              Discover & register <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span data-i18n="footerLeft">Made with care by Ehsan & Anna</span>
+    <span data-i18n="footerRight">Art, stories, and encounters.</span>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        pageTitle: "Exhibitions by Ehsan & Anna",
+        wordmark: "A small independent exhibition project",
+        heroEyebrow: "ARTISTS · STORIES · CONNECTION",
+        heroTitle: 'Exhibitions by<br>Ehsan <span class="ampersand">&</span> Anna',
+        intro: "Hi, we are Ehsan and Anna. We are two people passionate about artists. We host intimate exhibitions to share the work of artists we admire and collect donations to support them.",
+        heroNote: "Art brings us closer to each other.",
+        featuredEyebrow: "CURRENTLY FEATURED",
+        sectionTitle: "An exhibition to discover",
+        artAlt: "Abstract artwork-inspired shapes and thread-like lines",
+        artLabel: "Art · Personal stories · Iran",
+        cardEyebrow: "FEATURED EXHIBITION",
+        exhibitionTitle: "Erzählungen<br>der Hände",
+        exhibitionDescription: "Artists from Iran share their lived realities through art. Their works offer personal stories and glimpses into life in Iran, told through the things their hands create.",
+        artistNote: "Discover the artists, explore their work, and support them through donations.",
+        registerLink: 'Discover & register <span aria-hidden="true">↗</span>',
+        footerLeft: "Made with care by Ehsan & Anna",
+        footerRight: "Art, stories, and encounters."
+      },
+      de: {
+        pageTitle: "Ausstellungen von Ehsan & Anna",
+        wordmark: "Ein unabhängiges Ausstellungsprojekt",
+        heroEyebrow: "KUNST · GESCHICHTEN · BEGEGNUNGEN",
+        heroTitle: 'Ausstellungen von<br>Ehsan <span class="ampersand">&</span> Anna',
+        intro: "Hallo, wir sind Ehsan und Anna. Wir begeistern uns für Künstler:innen und ihre Arbeit. In kleinen, persönlichen Ausstellungen zeigen wir Kunst von Menschen, die wir bewundern, und sammeln Spenden, um sie zu unterstützen.",
+        heroNote: "Kunst bringt Menschen einander näher.",
+        featuredEyebrow: "AKTUELLE AUSSTELLUNG",
+        sectionTitle: "Eine Ausstellung zum Entdecken",
+        artAlt: "Abstrakte, von Kunst inspirierte Formen und fadenartige Linien",
+        artLabel: "Kunst · Persönliche Geschichten · Iran",
+        cardEyebrow: "AUSGEWÄHLTE AUSSTELLUNG",
+        exhibitionTitle: "Erzählungen<br>der Hände",
+        exhibitionDescription: "Künstler:innen aus dem Iran erzählen durch ihre Kunst von ihrer Lebensrealität. Ihre Werke machen persönliche Geschichten sichtbar und geben Einblicke in das Leben im Iran.",
+        artistNote: "Lerne die Künstler:innen kennen, entdecke ihre Werke und unterstütze sie mit einer Spende.",
+        registerLink: 'Entdecken & anmelden <span aria-hidden="true">↗</span>',
+        footerLeft: "Mit Sorgfalt gestaltet von Ehsan & Anna",
+        footerRight: "Kunst, Geschichten und Begegnungen."
+      },
+      fa: {
+        pageTitle: "نمایشگاه‌های احسان و آنا",
+        wordmark: "پروژه‌ای مستقل برای برگزاری نمایشگاه",
+        heroEyebrow: "هنرمندان · داستان‌ها · پیوندها",
+        heroTitle: "نمایشگاه‌های<br>احسان <span class=\"ampersand\">و</span> آنا",
+        intro: "سلام، ما احسان و آنا هستیم. ما به هنر و هنرمندان علاقه‌مندیم. نمایشگاه‌های صمیمی برگزار می‌کنیم تا آثار هنرمندانی را که تحسین می‌کنیم به نمایش بگذاریم و با جمع‌آوری کمک‌های مالی از آن‌ها حمایت کنیم.",
+        heroNote: "هنر ما را به هم نزدیک‌تر می‌کند.",
+        featuredEyebrow: "نمایشگاه فعلی",
+        sectionTitle: "نمایشگاهی برای کشف کردن",
+        artAlt: "فرم‌های انتزاعی الهام‌گرفته از هنر و خطوطی شبیه نخ",
+        artLabel: "هنر · داستان‌های شخصی · ایران",
+        cardEyebrow: "نمایشگاه منتخب",
+        exhibitionTitle: "روایت‌های<br>دست‌ها",
+        exhibitionDescription: "هنرمندانی از ایران واقعیت زندگی خود را از طریق هنر روایت می‌کنند. آثار آن‌ها داستان‌های شخصی را به تصویر می‌کشند و نگاهی به زندگی در ایران ارائه می‌دهند.",
+        artistNote: "با هنرمندان آشنا شوید، آثارشان را ببینید و با کمک‌های مالی از آن‌ها حمایت کنید.",
+        registerLink: 'بیشتر ببینید و ثبت‌نام کنید <span aria-hidden="true">↗</span>',
+        footerLeft: "با مهر، از احسان و آنا",
+        footerRight: "هنر، داستان‌ها و دیدارها."
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.en;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+      document.body.dir = lang === "fa" ? "rtl" : "ltr";
+      document.title = t.pageTitle;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+        const key = el.dataset.i18nAria;
+        if (t[key] !== undefined) el.setAttribute("aria-label", t[key]);
+      });
+
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage("en");
+  </script>
+</body>
+</html>
