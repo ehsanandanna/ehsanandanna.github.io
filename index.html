@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3eee4">
+  <meta name="theme-color" content="#FFF3D6">
   <meta name="description" content="Exhibitions by Ehsan & Anna — sharing art, stories, and supporting artists.">
   <title>Exhibitions by Ehsan & Anna</title>
 
@@ -13,13 +13,14 @@
 
   <style>
     :root {
-      --paper: #f3eee4;
-      --paper-deep: #e9dfd0;
-      --ink: #29261f;
-      --muted: #756b5e;
-      --accent: #a64b36;
-      --line: #d7cbbb;
-      --white: #fffaf2;
+      --paper: #FFF3D6;
+      --paper-deep: #F0E3C7;
+      --ink: #111111;
+      --muted: #555555;
+      --accent: #E58C70;
+      --secondary-accent: #303DAB;
+      --line: #D9CCA8;
+      --white: #FFFFFF;
     }
 
     * { box-sizing: border-box; }
@@ -29,7 +30,7 @@
     body {
       margin: 0;
       background:
-        radial-gradient(ellipse at 90% 8%, rgba(166, 75, 54, .08), transparent 30%),
+        radial-gradient(ellipse at 90% 8%, rgba(229, 140, 112, .12), transparent 30%),
         var(--paper);
       color: var(--ink);
       font-family: "DM Sans", sans-serif;
@@ -61,7 +62,7 @@
       padding: .25rem;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 250, 242, .55);
+      background: rgba(255, 255, 255, .55);
     }
 
     .language-switcher button {
@@ -109,12 +110,12 @@
       font-size: clamp(3.6rem, 10vw, 8.5rem);
     }
 
-    h1 .ampersand { color: var(--accent); }
+    h1 .ampersand { color: var(--secondary-accent); }
 
     .hero-copy {
       max-width: 650px;
       margin: 2rem 0 0;
-      color: #554e44;
+      color: #333333;
       font-size: clamp(1rem, 1.8vw, 1.2rem);
     }
 
@@ -130,7 +131,7 @@
     .hero-note::before {
       content: "";
       width: 2.5rem;
-      border-top: 1px dashed var(--accent);
+      border-top: 1px dashed var(--secondary-accent);
     }
 
     .exhibitions {
@@ -154,8 +155,8 @@
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
       background: var(--white);
-      border: 1px solid rgba(41, 38, 31, .1);
-      box-shadow: 0 20px 60px rgba(41, 38, 31, .06);
+      border: 1px solid rgba(17, 17, 17, .1);
+      box-shadow: 0 20px 60px rgba(17, 17, 17, .06);
     }
 
     .art-panel {
@@ -166,19 +167,18 @@
       align-items: flex-end;
       padding: clamp(1.5rem, 4vw, 3rem);
       background:
-        radial-gradient(ellipse at 25% 25%, rgba(243, 238, 228, .92), transparent 30%),
-        radial-gradient(ellipse at 75% 35%, rgba(166, 75, 54, .55), transparent 28%),
-        radial-gradient(ellipse at 45% 78%, rgba(41, 38, 31, .88), transparent 38%),
-        linear-gradient(135deg, #d6b99b, #a64b36 58%, #6b342b);
+        radial-gradient(ellipse at 25% 25%, rgba(255, 243, 214, .92), transparent 30%),
+        radial-gradient(ellipse at 75% 35%, rgba(48, 61, 171, .45), transparent 28%),
+        radial-gradient(ellipse at 45% 78%, rgba(229, 140, 112, .85), transparent 38%),
+        linear-gradient(135deg, #E58C70, #303DAB 58%, #111111);
     }
 
-    /* Decorative thread-like lines; no external artwork is required. */
     .art-panel::before,
     .art-panel::after {
       content: "";
       position: absolute;
       inset: 9%;
-      border: 1px dashed rgba(255, 250, 242, .68);
+      border: 1px dashed rgba(255, 255, 255, .75);
       border-radius: 48% 52% 43% 57% / 52% 40% 60% 48%;
       transform: rotate(-18deg);
       pointer-events: none;
@@ -195,7 +195,7 @@
       position: relative;
       z-index: 1;
       max-width: 300px;
-      color: #fffaf2;
+      color: var(--white);
       font-size: .75rem;
       letter-spacing: .14em;
       line-height: 1.7;
@@ -216,7 +216,7 @@
 
     .card-content p {
       margin: 0 0 1rem;
-      color: #554e44;
+      color: #333333;
     }
 
     .artist-note {
@@ -233,9 +233,9 @@
       gap: .75rem;
       margin-top: auto;
       padding: .85rem 1.15rem;
-      background: var(--accent);
+      background: var(--secondary-accent);
       color: white;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--secondary-accent);
       text-decoration: none;
       font-size: .9rem;
       font-weight: 700;
@@ -244,19 +244,44 @@
 
     .button:hover {
       background: transparent;
-      color: var(--accent);
+      color: var(--secondary-accent);
       transform: translateY(-2px);
     }
 
     .footer {
       width: min(1120px, 100%);
       margin: 0 auto;
-      padding: 2rem clamp(1.2rem, 5vw, 4rem);
+      padding: 3rem clamp(1.2rem, 5vw, 4rem) 4rem;
       display: flex;
-      justify-content: space-between;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 1.5rem;
       color: var(--muted);
       font-size: .78rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .impressum {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .impressum h4 {
+      margin: 0 0 0.2rem 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink);
     }
 
     [dir="rtl"] body,
@@ -309,9 +334,9 @@
 
       .card-content { min-height: 340px; }
 
-      .footer {
+      .footer-top {
         flex-direction: column;
-        gap: .25rem;
+        gap: .5rem;
       }
     }
 
@@ -377,8 +402,18 @@
   </main>
 
   <footer class="footer">
-    <span data-i18n="footerLeft">Made with care by Ehsan & Anna</span>
-    <span data-i18n="footerRight">Art, stories, and encounters.</span>
+    <div class="footer-top">
+      <span data-i18n="footerLeft">Made with care by Ehsan & Anna</span>
+      <span data-i18n="footerRight">Art, stories, and encounters.</span>
+    </div>
+    
+    <div class="impressum">
+      <h4 data-i18n="impressumHeading">Impressum / Legal Notice</h4>
+      <p>
+        <span data-i18n="impressumName">Anna Hausberger</span><br>
+        Email: <a href="mailto:annaahausii@gmail.com">annaahausii@gmail.com</a>
+      </p>
+    </div>
   </footer>
 
   <script>
@@ -400,7 +435,9 @@
         artistNote: "Discover the artists, explore their work, and support them through donations.",
         registerLink: 'Discover & register <span aria-hidden="true">↗</span>',
         footerLeft: "Made with care by Ehsan & Anna",
-        footerRight: "Art, stories, and encounters."
+        footerRight: "Art, stories, and encounters.",
+        impressumHeading: "Impressum / Legal Notice",
+        impressumName: "Anna Hausberger"
       },
       de: {
         pageTitle: "Ausstellungen von Ehsan & Anna",
@@ -419,7 +456,9 @@
         artistNote: "Lerne die Künstler:innen kennen, entdecke ihre Werke und unterstütze sie mit einer Spende.",
         registerLink: 'Entdecken & anmelden <span aria-hidden="true">↗</span>',
         footerLeft: "Mit Sorgfalt gestaltet von Ehsan & Anna",
-        footerRight: "Kunst, Geschichten und Begegnungen."
+        footerRight: "Kunst, Geschichten und Begegnungen.",
+        impressumHeading: "Impressum / Rechtliche Hinweise",
+        impressumName: "Anna Hausberger"
       },
       fa: {
         pageTitle: "نمایشگاه‌های احسان و آنا",
@@ -438,7 +477,9 @@
         artistNote: "با هنرمندان آشنا شوید، آثارشان را ببینید و با کمک‌های مالی از آن‌ها حمایت کنید.",
         registerLink: 'بیشتر ببینید و ثبت‌نام کنید <span aria-hidden="true">↗</span>',
         footerLeft: "با مهر، از احسان و آنا",
-        footerRight: "هنر، داستان‌ها و دیدارها."
+        footerRight: "هنر، داستان‌ها و دیدارها.",
+        impressumHeading: "اطلاعات حقوقی / ایمپرسوم",
+        impressumName: "آنا هاوسبرگر"
       }
     };
 
